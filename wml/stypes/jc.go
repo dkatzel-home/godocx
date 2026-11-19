@@ -2,7 +2,7 @@ package stypes
 
 import (
 	"encoding/xml"
-	"errors"
+	"fmt"
 )
 
 type Justification string
@@ -43,7 +43,7 @@ func JustificationFromStr(value string) (Justification, error) {
 	case "thaiDistribute":
 		return JustificationThaiDistribute, nil
 	default:
-		return "", errors.New("invalid Justification value")
+		return "", fmt.Errorf("invalid Justification value '%s'", value)
 	}
 }
 
