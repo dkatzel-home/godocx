@@ -42,6 +42,10 @@ func JustificationFromStr(value string) (Justification, error) {
 		return JustificationLowKashida, nil
 	case "thaiDistribute":
 		return JustificationThaiDistribute, nil
+	case "start":
+		// this is left for left align languages and right for right aligned languages...
+		// assume left for now... not sure how we figure out the language
+		return JustificationLeft, nil
 	default:
 		return "", fmt.Errorf("invalid Justification value '%s'", value)
 	}
