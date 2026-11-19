@@ -329,6 +329,26 @@ func (p *Paragraph) AddPng(pngBytes []byte, width units.Inch, height units.Inch)
 
 	return p.addPicture(pngBytes, ".png", width, height)
 }
+func (p *Paragraph) AddJpg(jpgBytes []byte, width units.Inch, height units.Inch) (*PicMeta, error) {
+
+	return p.addPicture(jpgBytes, ".jpg", width, height)
+}
+func (p *Paragraph) AddJpeg(jpegBytes []byte, width units.Inch, height units.Inch) (*PicMeta, error) {
+
+	return p.addPicture(jpegBytes, ".jpeg", width, height)
+}
+func (p *Paragraph) AddGif(gifBytes []byte, width units.Inch, height units.Inch) (*PicMeta, error) {
+
+	return p.addPicture(gifBytes, ".gif", width, height)
+}
+func (p *Paragraph) AddTiff(tiffBytes []byte, width units.Inch, height units.Inch) (*PicMeta, error) {
+
+	return p.addPicture(tiffBytes, ".tiff", width, height)
+}
+func (p *Paragraph) AddBmp(bmpBytes []byte, width units.Inch, height units.Inch) (*PicMeta, error) {
+
+	return p.addPicture(bmpBytes, ".bmp", width, height)
+}
 
 func (p *Paragraph) addPicture(imgBytes []byte, imgExt string, width units.Inch, height units.Inch) (*PicMeta, error) {
 
