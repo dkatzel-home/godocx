@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mrlijnden/godocx/wml/stypes"
+	"github.com/dkatzel-home/godocx/wml/stypes"
 )
 
 func TestCellMarginsMarshalXML(t *testing.T) {

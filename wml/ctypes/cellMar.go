@@ -3,7 +3,7 @@ package ctypes
 import (
 	"encoding/xml"
 
-	"github.com/mrlijnden/godocx/wml/stypes"
+	"github.com/dkatzel-home/godocx/wml/stypes"
 )
 
 // Table Cell Margin Defaults

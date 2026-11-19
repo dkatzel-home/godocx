@@ -4,7 +4,7 @@ import (
 	"encoding/xml"
 	"strconv"
 
-	"github.com/mrlijnden/godocx/dml/dmlst"
+	"github.com/dkatzel-home/godocx/dml/dmlst"
 )
 
 // Tile

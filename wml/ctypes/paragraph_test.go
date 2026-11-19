@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/mrlijnden/godocx/common/constants"
+	"github.com/dkatzel-home/godocx/common/constants"
 )
 
 func TestParagraphXML(t *testing.T) {

@@ -3,7 +3,7 @@ package docx
 import (
 	"encoding/xml"
 
-	"github.com/mrlijnden/godocx/common/constants"
+	"github.com/dkatzel-home/godocx/common/constants"
 )
 
 // docxDcTerms represents an XML element with text content and an xsi:type attribute.

@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/mrlijnden/godocx/common/constants"
-	"github.com/mrlijnden/godocx/wml/ctypes"
-	"github.com/mrlijnden/godocx/wml/stypes"
+	"github.com/dkatzel-home/godocx/common/constants"
+	"github.com/dkatzel-home/godocx/wml/ctypes"
+	"github.com/dkatzel-home/godocx/wml/stypes"
 )
 
 var footerAttrs = map[string]string{

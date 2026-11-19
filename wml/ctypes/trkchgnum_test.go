@@ -4,7 +4,7 @@ import (
 	"encoding/xml"
 	"testing"
 
-	"github.com/mrlijnden/godocx/internal"
+	"github.com/dkatzel-home/godocx/internal"
 )
 
 func TestTrackChangeNum_MarshalXML(t *testing.T) {

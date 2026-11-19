@@ -4,7 +4,7 @@ import (
 	"encoding/xml"
 	"fmt"
 
-	"github.com/mrlijnden/godocx/wml/stypes"
+	"github.com/dkatzel-home/godocx/wml/stypes"
 )
 
 // Style Conditional Table Formatting Properties

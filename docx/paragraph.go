@@ -7,14 +7,14 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/mrlijnden/godocx/common/constants"
-	"github.com/mrlijnden/godocx/common/units"
-	"github.com/mrlijnden/godocx/dml"
-	"github.com/mrlijnden/godocx/dml/dmlct"
-	"github.com/mrlijnden/godocx/dml/dmlpic"
-	"github.com/mrlijnden/godocx/internal"
-	"github.com/mrlijnden/godocx/wml/ctypes"
-	"github.com/mrlijnden/godocx/wml/stypes"
+	"github.com/dkatzel-home/godocx/common/constants"
+	"github.com/dkatzel-home/godocx/common/units"
+	"github.com/dkatzel-home/godocx/dml"
+	"github.com/dkatzel-home/godocx/dml/dmlct"
+	"github.com/dkatzel-home/godocx/dml/dmlpic"
+	"github.com/dkatzel-home/godocx/internal"
+	"github.com/dkatzel-home/godocx/wml/ctypes"
+	"github.com/dkatzel-home/godocx/wml/stypes"
 )
 
 // Paragraph represents a paragraph in a DOCX document.
@@ -322,6 +322,16 @@ func (p *Paragraph) AddPicture(path string, width units.Inch, height units.Inch)
 	}
 
 	imgExt := filepath.Ext(path)
+	return p.addPicture(imgBytes, imgExt, width, height)
+}
+
+func (p *Paragraph) AddPng(pngBytes []byte, width units.Inch, height units.Inch) (*PicMeta, error) {
+
+	return p.addPicture(pngBytes, ".png", width, height)
+}
+
+func (p *Paragraph) addPicture(imgBytes []byte, imgExt string, width units.Inch, height units.Inch) (*PicMeta, error) {
+
 	p.root.ImageCount += 1
 	fileName := fmt.Sprintf("image%d%s", p.root.ImageCount, imgExt)
 	fileIdxPath := fmt.Sprintf("%s%s", constants.MediaPath, fileName)

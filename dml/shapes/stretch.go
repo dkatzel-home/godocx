@@ -3,7 +3,7 @@ package shapes
 import (
 	"encoding/xml"
 
-	"github.com/mrlijnden/godocx/dml/dmlct"
+	"github.com/dkatzel-home/godocx/dml/dmlct"
 )
 
 type Stretch struct {

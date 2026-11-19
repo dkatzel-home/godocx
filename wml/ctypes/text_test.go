@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mrlijnden/godocx/internal"
+	"github.com/dkatzel-home/godocx/internal"
 )
 
 func TestTextMarshalXML(t *testing.T) {
@@ -75,7 +75,7 @@ func TestTextUnmarshalXML(t *testing.T) {
 			}
 
 			if err := internal.ComparePtr("space", tc.expected.Space, result.Space); err != nil {
-				t.Errorf(err.Error())
+				t.Errorf("%v", err)
 			}
 		})
 	}

@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mrlijnden/godocx/internal"
-	"github.com/mrlijnden/godocx/wml/stypes"
+	"github.com/dkatzel-home/godocx/internal"
+	"github.com/dkatzel-home/godocx/wml/stypes"
 )
 
 func TestEALayout_MarshalXML(t *testing.T) {

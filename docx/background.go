@@ -3,7 +3,7 @@ package docx
 import (
 	"encoding/xml"
 
-	"github.com/mrlijnden/godocx/wml/stypes"
+	"github.com/dkatzel-home/godocx/wml/stypes"
 )
 
 // Specifies the background information for this document

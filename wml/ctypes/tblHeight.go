@@ -5,7 +5,7 @@ import (
 	"errors"
 	"strconv"
 
-	"github.com/mrlijnden/godocx/wml/stypes"
+	"github.com/dkatzel-home/godocx/wml/stypes"
 )
 
 // TableRowHeight represents the height of a table row in a document.

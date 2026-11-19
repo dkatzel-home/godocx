@@ -3,8 +3,8 @@ package packager
 import (
 	"encoding/xml"
 
-	"github.com/mrlijnden/godocx/common/constants"
-	"github.com/mrlijnden/godocx/docx"
+	"github.com/dkatzel-home/godocx/common/constants"
+	"github.com/dkatzel-home/godocx/docx"
 )
 
 // LoadRelationShips loads the relationships from the specified file.

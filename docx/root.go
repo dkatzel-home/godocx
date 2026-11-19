@@ -4,7 +4,7 @@ import (
 	"encoding/xml"
 	"sync"
 
-	"github.com/mrlijnden/godocx/wml/ctypes"
+	"github.com/dkatzel-home/godocx/wml/ctypes"
 )
 
 // RootDoc represents the root document of an Office Open XML (OOXML) document.

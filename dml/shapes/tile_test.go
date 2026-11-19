@@ -4,8 +4,8 @@ import (
 	"encoding/xml"
 	"testing"
 
-	"github.com/mrlijnden/godocx/dml/dmlst"
-	"github.com/mrlijnden/godocx/internal"
+	"github.com/dkatzel-home/godocx/dml/dmlst"
+	"github.com/dkatzel-home/godocx/internal"
 )
 
 func TestTile_MarshalXML(t *testing.T) {
@@ -86,22 +86,22 @@ func TestTile_UnmarshalXML(t *testing.T) {
 			}
 
 			if err := internal.ComparePtr("Tx", tt.expected.Tx, tile.Tx); err != nil {
-				t.Errorf(err.Error())
+				t.Errorf("%v", err)
 			}
 			if err := internal.ComparePtr("Ty", tt.expected.Ty, tile.Ty); err != nil {
-				t.Errorf(err.Error())
+				t.Errorf("%v", err)
 			}
 			if err := internal.ComparePtr("Sx", tt.expected.Sx, tile.Sx); err != nil {
-				t.Errorf(err.Error())
+				t.Errorf("%v", err)
 			}
 			if err := internal.ComparePtr("Sy", tt.expected.Sy, tile.Sy); err != nil {
-				t.Errorf(err.Error())
+				t.Errorf("%v", err)
 			}
 			if err := internal.ComparePtr("Flip", tt.expected.Flip, tile.Flip); err != nil {
-				t.Errorf(err.Error())
+				t.Errorf("%v", err)
 			}
 			if err := internal.ComparePtr("Algn", tt.expected.Algn, tile.Algn); err != nil {
-				t.Errorf(err.Error())
+				t.Errorf("%v", err)
 			}
 		})
 	}

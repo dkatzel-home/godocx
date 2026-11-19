@@ -1,8 +1,8 @@
 package docx
 
 import (
-	"github.com/mrlijnden/godocx/wml/ctypes"
-	"github.com/mrlijnden/godocx/wml/stypes"
+	"github.com/dkatzel-home/godocx/wml/ctypes"
+	"github.com/dkatzel-home/godocx/wml/stypes"
 )
 
 type Hyperlink struct {

@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/mrlijnden/godocx"
+	"github.com/dkatzel-home/godocx"
 )
 
 func main() {

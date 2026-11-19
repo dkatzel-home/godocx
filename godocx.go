@@ -1,7 +1,7 @@
 package godocx
 
 import (
-	"github.com/mrlijnden/godocx/docx"
+	"github.com/dkatzel-home/godocx/docx"
 )
 
 // NewDocument creates a new DOCX document and returns a pointer to the RootDoc.
