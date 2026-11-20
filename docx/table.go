@@ -127,6 +127,28 @@ func (t *Table) AddRow() *Row {
 	return &row
 }
 
+// AddRow adds a new row that is marked as a header to the table.  Headers
+// repeat if the table spans multiple pages and often have different styling applied
+// to them.
+//
+// It creates a new row and appends it to the table's row contents. Use this method to construct the structure
+// of the table by sequentially adding rows and cells.
+//
+// Returns:
+//   - *ctypes.Row: A pointer to the newly added row.
+func (t *Table) AddHeaderRow() *Row {
+	row := Row{
+		root: t.root,
+		ct:   *ctypes.DefaultRow(),
+	}
+	row.ct.Property.Header = ctypes.OnOffFromBool(true)
+	t.ct.RowContents = append(t.ct.RowContents, ctypes.RowContent{
+		Row: &row.ct,
+	})
+
+	return &row
+}
+
 func (t *Table) ensureProp() {
 }
 
