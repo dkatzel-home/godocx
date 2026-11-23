@@ -37,6 +37,8 @@ func NewRootDoc() *RootDoc {
 	rd.ContentType = ContentTypes{}
 	rd.RootRels = Relationships{}
 	rd.Document.DocRels = Relationships{}
+	rd.Document.HeaderRels = Relationships{}
+
 	return rd
 }
 

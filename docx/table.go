@@ -232,6 +232,20 @@ func (r *Row) AddCell() *Cell {
 	return &cell
 }
 
+// Add Cell with given CellProperty to row and returns Cell
+func (r *Row) AddCellWithProperties(cellProperties *ctypes.CellProperty) *Cell {
+	cell := Cell{
+		root: r.root,
+		ct:   *ctypes.NewCellWithProperties(cellProperties),
+	}
+
+	r.ct.Contents = append(r.ct.Contents, ctypes.TRCellContent{
+		Cell: &cell.ct,
+	})
+
+	return &cell
+}
+
 // Cell Wrapper
 type Cell struct {
 	// Reverse inheriting the Rootdoc into paragraph to access other elements
@@ -239,6 +253,10 @@ type Cell struct {
 
 	// Cell Complex Type
 	ct ctypes.Cell
+}
+
+func (c *Cell) GetCellProperties() *ctypes.CellProperty {
+	return c.ct.Property
 }
 
 // Adds paragraph with text and returns Paragraph

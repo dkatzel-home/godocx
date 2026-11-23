@@ -34,6 +34,7 @@ type Document struct {
 
 	// Non elements - helper fields
 	DocRels      Relationships // DocRels represents relationships specific to the document.
+	HeaderRels   Relationships
 	RID          int
 	relativePath string
 }

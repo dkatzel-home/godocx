@@ -17,10 +17,14 @@ In depth, go docs can be seen using go's built-in documentation tool, or online 
 
 This fork includes several improvements over the original library:
 
-- **📑 Table of Contents (TOC)**: Professional TOC generation with automatic heading detection, dotted leaders, and realistic page numbers
-- **✨ Improved Header/Footer API**: Headers and footers now follow the library's fluent API pattern - no manual saving required!
-- **🚀 Better Developer Experience**: Consistent with the rest of the library's design philosophy
-- **🔧 Enhanced Examples**: Updated examples showing the improved API
+- Adding Images using embedded bytes, several new functions for the specific image format
+- Improvements with Table Styling and Creating custom Tables with applied Styling
+- Added `JustificationStart` and `JustificationEnd` some programs such as LibreOffice prefer to use those instead of left and right to better support languages like Arabic and Hebrew.  Previously this library would panic upon seeing those values.
+- Added new `units.ImageUnits` interface which `units.Inch` and `units.Emu` now implement and changed all methods
+that took Inches to now take ImageUnits so that users can specify dimensions in either Inches or Emus
+- Added Document#AddHeaderRelation() to add relationships to a header (like to insert an image into the header).  This will also make the header.xml file when written out
+- Added new Abstraction `RelationRepository` to Paragraph which handles adding new Relationships to either the Document or the Header depending on where this Paragraph lives.
+- New Table Row `AddCellWithProperties` method to override the default properties (or nil) to blank out the properties to use the styling from the table
 
 ### Header/Footer Usage Example
 

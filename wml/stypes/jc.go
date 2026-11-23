@@ -18,6 +18,8 @@ const (
 	JustificationHighKashida    Justification = "highKashida"    // Widest Kashida Length
 	JustificationLowKashida     Justification = "lowKashida"     // Low Kashida Length
 	JustificationThaiDistribute Justification = "thaiDistribute" // Thai Language Justification
+	JustificationStart          Justification = "start"
+	JustificationEnd            Justification = "end" //Align Start (left for left starting languages, right for right starting languages)
 )
 
 func JustificationFromStr(value string) (Justification, error) {
@@ -43,9 +45,9 @@ func JustificationFromStr(value string) (Justification, error) {
 	case "thaiDistribute":
 		return JustificationThaiDistribute, nil
 	case "start":
-		// this is left for left align languages and right for right aligned languages...
-		// assume left for now... not sure how we figure out the language
-		return JustificationLeft, nil
+		return JustificationStart, nil
+	case "end":
+		return JustificationEnd, nil
 	default:
 		return "", fmt.Errorf("invalid Justification value '%s'", value)
 	}

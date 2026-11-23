@@ -63,6 +63,12 @@ func (rd *RootDoc) writeToZip(zw *zip.Writer) error {
 	}
 	rd.FileMap.Store(rd.Document.DocRels.RelativePath, docRelContent)
 
+	headerRelContent, err := marshal(rd.Document.HeaderRels)
+	if err != nil {
+		return err
+	}
+	rd.FileMap.Store(rd.Document.HeaderRels.RelativePath, headerRelContent)
+
 	rootRelContent, err := marshal(rd.RootRels)
 	if err != nil {
 		return err

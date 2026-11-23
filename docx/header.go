@@ -26,6 +26,10 @@ type Header struct {
 
 // NewHeader creates a new header instance
 func NewHeader(root *RootDoc, filename string) *Header {
+	if root.Document.HeaderRels.RelativePath == "" {
+		root.Document.HeaderRels.RelativePath = "word/_rels/header1.xml.rels"
+		root.Document.HeaderRels.Xmlns = constants.XMLNS
+	}
 	return &Header{
 		Root:     root,
 		filename: filename,
@@ -43,6 +47,7 @@ func (h *Header) AddParagraph(text string) *Paragraph {
 // AddEmptyParagraph adds an empty paragraph to the header
 func (h *Header) AddEmptyParagraph() *Paragraph {
 	p := newParagraph(h.Root)
+	p.RelationshipRepository = h.Root.Document.addHeaderRelation
 	h.Children = append(h.Children, DocumentChild{Para: p})
 	return p
 }

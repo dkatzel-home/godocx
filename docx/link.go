@@ -55,3 +55,15 @@ func (doc *Document) addRelation(relType string, fileName string) string {
 
 	return "rId" + strconv.Itoa(rID)
 }
+func (doc *Document) addHeaderRelation(relType string, fileName string) string {
+	rID := doc.IncRelationID()
+	rel := &Relationship{
+		ID:     "rId" + strconv.Itoa(rID),
+		Type:   relType,
+		Target: fileName,
+	}
+
+	doc.HeaderRels.Relationships = append(doc.HeaderRels.Relationships, rel)
+
+	return "rId" + strconv.Itoa(rID)
+}

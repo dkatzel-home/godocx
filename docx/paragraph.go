@@ -19,8 +19,9 @@ import (
 
 // Paragraph represents a paragraph in a DOCX document.
 type Paragraph struct {
-	root *RootDoc         // root is a reference to the root document.
-	ct   ctypes.Paragraph // ct holds the underlying Paragraph Complex Type.
+	root                   *RootDoc                                     // root is a reference to the root document.
+	ct                     ctypes.Paragraph                             // ct holds the underlying Paragraph Complex Type.
+	RelationshipRepository func(relType string, fileName string) string // link to thing that tracks relationships for this paragraph
 }
 
 func (p *Paragraph) unmarshalXML(d *xml.Decoder, start xml.StartElement) error {
@@ -41,7 +42,8 @@ type paraOption func(*Paragraph)
 // newParagraph creates and initializes a new Paragraph instance with given options.
 func newParagraph(root *RootDoc, opts ...paraOption) *Paragraph {
 	p := &Paragraph{
-		root: root,
+		root:                   root,
+		RelationshipRepository: root.Document.addRelation,
 	}
 	for _, opt := range opts {
 		opt(p)
@@ -283,7 +285,7 @@ func (p *Paragraph) AddLink(text string, link string) *Hyperlink {
 //
 // Returns:
 //   - *dml.Inline: The created Inline instance representing the added drawing.
-func (p *Paragraph) addDrawing(rID string, imgCount uint, width units.Inch, height units.Inch) *dml.Inline {
+func (p *Paragraph) addDrawing(rID string, imgCount uint, width units.ImageUnits, height units.ImageUnits) *dml.Inline {
 	eWidth := width.ToEmu()
 	eHeight := height.ToEmu()
 
@@ -314,7 +316,7 @@ func (p *Paragraph) addDrawing(rID string, imgCount uint, width units.Inch, heig
 	return &inline
 }
 
-func (p *Paragraph) AddPicture(path string, width units.Inch, height units.Inch) (*PicMeta, error) {
+func (p *Paragraph) AddPicture(path string, width units.ImageUnits, height units.ImageUnits) (*PicMeta, error) {
 
 	imgBytes, err := internal.FileToByte(path)
 	if err != nil {
@@ -325,32 +327,32 @@ func (p *Paragraph) AddPicture(path string, width units.Inch, height units.Inch)
 	return p.addPicture(imgBytes, imgExt, width, height)
 }
 
-func (p *Paragraph) AddPng(pngBytes []byte, width units.Inch, height units.Inch) (*PicMeta, error) {
+func (p *Paragraph) AddPng(pngBytes []byte, width units.ImageUnits, height units.ImageUnits) (*PicMeta, error) {
 
 	return p.addPicture(pngBytes, ".png", width, height)
 }
-func (p *Paragraph) AddJpg(jpgBytes []byte, width units.Inch, height units.Inch) (*PicMeta, error) {
+func (p *Paragraph) AddJpg(jpgBytes []byte, width units.ImageUnits, height units.ImageUnits) (*PicMeta, error) {
 
 	return p.addPicture(jpgBytes, ".jpg", width, height)
 }
-func (p *Paragraph) AddJpeg(jpegBytes []byte, width units.Inch, height units.Inch) (*PicMeta, error) {
+func (p *Paragraph) AddJpeg(jpegBytes []byte, width units.ImageUnits, height units.ImageUnits) (*PicMeta, error) {
 
 	return p.addPicture(jpegBytes, ".jpeg", width, height)
 }
-func (p *Paragraph) AddGif(gifBytes []byte, width units.Inch, height units.Inch) (*PicMeta, error) {
+func (p *Paragraph) AddGif(gifBytes []byte, width units.ImageUnits, height units.ImageUnits) (*PicMeta, error) {
 
 	return p.addPicture(gifBytes, ".gif", width, height)
 }
-func (p *Paragraph) AddTiff(tiffBytes []byte, width units.Inch, height units.Inch) (*PicMeta, error) {
+func (p *Paragraph) AddTiff(tiffBytes []byte, width units.ImageUnits, height units.ImageUnits) (*PicMeta, error) {
 
 	return p.addPicture(tiffBytes, ".tiff", width, height)
 }
-func (p *Paragraph) AddBmp(bmpBytes []byte, width units.Inch, height units.Inch) (*PicMeta, error) {
+func (p *Paragraph) AddBmp(bmpBytes []byte, width units.ImageUnits, height units.ImageUnits) (*PicMeta, error) {
 
 	return p.addPicture(bmpBytes, ".bmp", width, height)
 }
 
-func (p *Paragraph) addPicture(imgBytes []byte, imgExt string, width units.Inch, height units.Inch) (*PicMeta, error) {
+func (p *Paragraph) addPicture(imgBytes []byte, imgExt string, width units.ImageUnits, height units.ImageUnits) (*PicMeta, error) {
 
 	p.root.ImageCount += 1
 	fileName := fmt.Sprintf("image%d%s", p.root.ImageCount, imgExt)
@@ -376,8 +378,8 @@ func (p *Paragraph) addPicture(imgBytes []byte, imgExt string, width units.Inch,
 	p.root.FileMap.Store(fileIdxPath, imgBytes)
 
 	relName := fmt.Sprintf("media/%s", fileName)
-
-	rID := p.root.Document.addRelation(constants.SourceRelationshipImage, relName)
+	rID := p.RelationshipRepository(constants.SourceRelationshipImage, relName)
+	//rID := p.root.Document.addRelation(constants.SourceRelationshipImage, relName)
 
 	inline := p.addDrawing(rID, p.root.ImageCount, width, height)
 

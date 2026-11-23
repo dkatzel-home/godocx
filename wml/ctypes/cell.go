@@ -22,6 +22,11 @@ func DefaultCell() *Cell {
 		},
 	}
 }
+func NewCellWithProperties(properties *CellProperty) *Cell {
+	return &Cell{
+		Property: properties,
+	}
+}
 
 func (c Cell) MarshalXML(e *xml.Encoder, start xml.StartElement) (err error) {
 	start.Name.Local = "w:tc"

@@ -22,13 +22,13 @@ type PicMeta struct {
 //
 // Parameters:
 //   - path: The path of the image file to be added.
-//   - width: The width of the image in inches.
-//   - height: The height of the image in inches.
+//   - width: The width of the image in ImageUnits (in either inches or emus).
+//   - height: The height of the image in ImageUnits (either inches or emus).
 //
 // Returns:
 //   - *PicMeta: Metadata about the added picture, including the Paragraph instance and Inline element.
 //   - error: An error, if any occurred during the process.
-func (rd *RootDoc) AddPicture(path string, width units.Inch, height units.Inch) (*PicMeta, error) {
+func (rd *RootDoc) AddPicture(path string, width units.ImageUnits, height units.ImageUnits) (*PicMeta, error) {
 
 	p := newParagraph(rd)
 
